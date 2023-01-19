@@ -53,14 +53,17 @@
   <section class="hero">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-12 col-lg-7 col-md-7 pt-5">
+        <div class="col-8 col-md-7 d-block d-md-none pt-5">
+          <img src="{{ url('assets') }}/images/logo-transparent.png" alt="Banner Image" width="100%" class="hero-logo">
+        </div>
+        <div class="col-12 col-lg-7 col-md-7">
           <h1>Klinik Pratama<br>Berkah Medical Center</h1>
           <p class="hero-text h5 mb-3">Tulus, Ikhlas, Antusias</p>
           <a href="#" class="btn my-btn-success">Berobat Sekarang</a>
           <a href="#" class="btn my-btn-dark ms-2">Kontak Kami</a>
         </div>
         <div class="col-lg-5 col-md-5 d-none d-md-block pt-5">
-          <img src="{{ url('assets') }}/images/banner-img.png" alt="Banner Image" width="100%">
+          <img src="{{ url('assets') }}/images/logo-transparent.png" alt="Banner Image" width="100%" class="hero-logo">
         </div>
       </div>
     </div>
@@ -87,7 +90,7 @@
       <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-7">
           <h2 class="section-title">Profil Singkat Klinik Pratama<br>Berkah Medical Center</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ea eaque, illo accusantium quibusdam omnis exercitationem quidem, voluptas obcaecati, non enim mollitia sit officia. Repellat commodi ipsum nobis, vero alias dolor cum qui voluptas in soluta autem corrupti enim sed repudiandae porro est illum. Qui vero minus dolores cupiditate commodi vitae quam incidunt magnam amet tenetur nobis ea saepe rem tempore dicta voluptatem officiis excepturi eum, est voluptate eos necessitatibus ex harum.</p>
+          <p>Klinik Pratama Berkah medical center merupakan klinik umum yang di dirikan oleh dr. Muchsyim pada tanggal 20 februari 2021. Klinik Pratama Berkah medical center terletak sangat strategis yaitu di Jln. R.A. Basyid Kel. Fajar Baru Kec.Jati Agung Kab. Lampung Selatan. Tujuan berdirinya Klinik Pratama Berkah Medical Center  adalah demi meningkatkan mutu pelayanan kesehatan bagi masyarakat umum sekitarnya dan ASKES Komersil lainnya. Dalam memberikan pelayanan terhadap pasien, Klinik Pratama Berkah Medical Center  beroperasi hari Senin – Sabtu dari jam 08.00 – 20.00, dengan tim dokter yang selalu siap untuk melayani pasien, dan dibantu oleh perawat dan tenaga administrasi. </p>
         </div>
         <div class="col-md-4 col-lg-5 d-none d-md-block">
           <img src="{{ url('assets') }}/images/profile.jpg" alt="Foto Profil Berkah Medical Center" class="w-100">
@@ -109,7 +112,7 @@
             <div class="card-body">
               <img src="{{ url('assets') }}/images/icons/icon.png" alt="Icon Bedah Minor" class="icon mb-3">
               <h3 class="h4">Bedah Minor</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <p>Pelaksanaan bedah minor di klinik ini bersifat efektif(terjadwal).</p>
             </div>
           </div>
         </div>
@@ -118,7 +121,7 @@
             <div class="card-body">
               <img src="{{ url('assets') }}/images/icons/icon-1.png" alt="Icon Khitan/Sunat" class="icon mb-3">
               <h3 class="h4">Khitan/Sunat</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <p>Sunat/Khitan adalah proses pelepasan kulit yang ada di ujung penis.</p>
             </div>
           </div>
         </div>
@@ -127,7 +130,7 @@
             <div class="card-body">
               <img src="{{ url('assets') }}/images/icons/icon-2.png" alt="Icon Suntik KB" class="icon mb-3">
               <h3 class="h4">Suntik KB</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <p>Menyuntikkan hormon ke dalam tubuh untuk mencegah ovulasi di masa subur.</p>
             </div>
           </div>
         </div>
@@ -136,7 +139,7 @@
             <div class="card-body">
               <img src="{{ url('assets') }}/images/icons/icon-3.png" alt="Icon Pengobatan Umum" class="icon mb-3">
               <h3 class="h4">Pengobatan Umum</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <p>Pengobatan umum diperuntukkan untuk anak dan dewasa.</p>
             </div>
           </div>
         </div>
@@ -145,7 +148,7 @@
             <div class="card-body">
               <img src="{{ url('assets') }}/images/icons/icon-4.png" alt="Icon Surat Keterangan Sehat" class="icon mb-3">
               <h3 class="h4">Surat Keterangan Sehat</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <p>Surat tertulis pasien setelah menjalani pemeriksaan sesuai aturan yang berlaku.</p>
             </div>
           </div>
         </div>
@@ -158,16 +161,16 @@
             <div class="card-body">
               <img src="{{ url('assets') }}/images/icons/icon-5.png" alt="Icon Asam Urat" class="icon mb-3">
               <h3 class="h4">Asam Urat</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <p>Pemeriksaan yang dilakukan untuk mengetahui kadar asam urat di dalam darah atau urine.</p>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-4">
           <div class="card border-0 shadow">
             <div class="card-body">
-              <img src="{{ url('assets') }}/images/icons/icon-5.png" alt="Icon Gula Rendah" class="icon mb-3">
-              <h3 class="h4">Gula Rendah</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <img src="{{ url('assets') }}/images/icons/icon-5.png" alt="Icon Gula Darah" class="icon mb-3">
+              <h3 class="h4">Gula Darah</h3>
+              <p>Pemeriksaan tes gula darah untuk mengetahui kadar gula (glukosa) dalam darah.</p>
             </div>
           </div>
         </div>
@@ -176,7 +179,7 @@
             <div class="card-body">
               <img src="{{ url('assets') }}/images/icons/icon-5.png" alt="Icon Kolesterol" class="icon mb-3">
               <h3 class="h4">Kolesterol</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              <p>Pemeriksaan tes kolesterol yang dilakukan untuk mengukur kadar lemak dalam darah.</p>
             </div>
           </div>
         </div>
@@ -191,31 +194,24 @@
       <p class="section-badge">Dokter</p>
       <h2 class="section-title">Dokter Expert Kami</h2>
       <p>berikut ini adalah beberapa dokter spesialis yang siap melayani pengobatan anda</p>
-      <div class="row justify-content-center g-3">
+      <div class="row justify-content-center g-3 gx-5">
         <div class="col-12 col-md-4">
           <div class="card border-0 shadow">
             <img src="{{ url('assets') }}/images/doctors/1.jpg" class="card-img-top rounded-0" alt="Foto dr. Muchsyim">
             <div class="card-body my-bg-dark py-2">
               <h3 class="h5 m-0">dr. Muchsyim</h3>
               <p class="doctor-description m-0">Dokter Umum</p>
+              <p class="m-0">Senin - Sabtu, 14:00 - 20:00</p>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-4">
           <div class="card border-0 shadow">
-            <img src="{{ url('assets') }}/images/doctors/2.jpg" class="card-img-top rounded-0" alt="Foto dr. Kurnia">
+            <img src="{{ url('assets') }}/images/doctors/2.jpg" class="card-img-top rounded-0" alt="Foto dr. Neta Oktiyani Poerin">
             <div class="card-body my-bg-dark py-2">
-              <h3 class="h5 m-0">dr. Kurnia</h3>
+              <h3 class="h5 m-0">dr. Neta Oktiyani Poerin</h3>
               <p class="doctor-description m-0">Dokter Umum</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-4">
-          <div class="card border-0 shadow">
-            <img src="{{ url('assets') }}/images/doctors/3.jpg" class="card-img-top rounded-0" alt="Foto dr. Tito Tri S">
-            <div class="card-body my-bg-dark py-2">
-              <h3 class="h5 m-0">dr. Tito Tri S</h3>
-              <p class="doctor-description m-0">Dokter Umum</p>
+              <p class="m-0">Senin, Selasa, Kamis, 08:00 - 14:00</p>
             </div>
           </div>
         </div>
