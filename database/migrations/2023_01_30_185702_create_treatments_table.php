@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('treatments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->text('address');
-            $table->string('photo')->default('photos/profiles/avatar.png');
+            $table->foreignId('user_id');
+            $table->foreignId('worker_id')->default('1');
+            $table->foreignId('disease_id')->default('1');
+            $table->text('complaint');
+            $table->enum('status', ['menunggu antrian', 'menunggu pembayaran', 'selesai'])->default('menunggu antrian');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('treatments');
     }
 };
