@@ -8,7 +8,6 @@ use App\Models\Disease;
 use App\Models\Event;
 use App\Models\Service;
 use App\Models\User;
-use App\Models\Worker;
 use App\Models\Queue;
 use App\Models\Treatment;
 use Illuminate\Database\Seeder;
@@ -32,21 +31,10 @@ class DatabaseSeeder extends Seeder
 
         $users = [
             [
-                'name' => 'Bagas Aditama',
-                'username' => 'bagas',
-                'password' => bcrypt('aditama'),
-                'address' => 'Lorem Ipsum',
-                'photo' => 'photos/profiles/avatar.png'
-            ]
-        ];
-
-        User::insert($users);
-
-        $workers = [
-            [
                 'name' => '-',
                 'username' => Str::random(45),
                 'password' => bcrypt(Str::random(20)),
+                'address' => 'Lorem Ipsum',
                 'photo' => 'photos/profiles/avatar.png',
                 'role' => 'admin',
                 'specialist' => NULL,
@@ -56,6 +44,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Imam Alfariji',
                 'username' => 'imam',
                 'password' => bcrypt('alfariji'),
+                'address' => 'Lorem Ipsum',
                 'photo' => 'photos/profiles/avatar.png',
                 'role' => 'admin',
                 'specialist' => NULL,
@@ -65,6 +54,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'dr. Muchsyim',
                 'username' => 'muchsyim',
                 'password' => bcrypt('muchsyim'),
+                'address' => 'Lorem Ipsum',
                 'photo' => 'photos/profiles/1.jpg',
                 'role' => 'doctor',
                 'specialist' => 'Dokter Umum',
@@ -74,14 +64,25 @@ class DatabaseSeeder extends Seeder
                 'name' => 'dr. Neta Oktiyani Poerin',
                 'username' => 'neta',
                 'password' => bcrypt('oktiyani'),
+                'address' => 'Lorem Ipsum',
                 'photo' => 'photos/profiles/2.jpg',
                 'role' => 'doctor',
                 'specialist' => 'Dokter Umum',
                 'practice_time' => 'Senin, Selasa, Kamis, 08:00 - 14:00'
+            ],
+            [
+                'name' => 'Bagas Aditama',
+                'username' => 'bagas',
+                'password' => bcrypt('aditama'),
+                'address' => 'Lorem Ipsum',
+                'photo' => 'photos/profiles/avatar.png',
+                'role' => 'patient',
+                'specialist' => NULL,
+                'practice_time' => NULL
             ]
         ];
 
-        Worker::insert($workers);
+        User::insert($users);
 
         $services = [
             [
@@ -170,7 +171,7 @@ class DatabaseSeeder extends Seeder
 
         $treatments = [
             [
-                'user_id' => '1',
+                'patient_id' => '1',
                 'complaint' => 'Lorem ipsum dolor sit amet ut doseui tempor',
             ]
         ];

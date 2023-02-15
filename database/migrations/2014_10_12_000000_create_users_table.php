@@ -18,8 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('password');
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->string('photo')->default('photos/profiles/avatar.png');
+            $table->string('specialist')->nullable();
+            $table->string('practice_time')->nullable();
+            $table->enum('role', ['admin', 'doctor','patient'])->default('patient');
             $table->timestamps();
             $table->softDeletes();
         });

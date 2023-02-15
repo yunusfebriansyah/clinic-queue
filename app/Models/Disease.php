@@ -12,4 +12,10 @@ class Disease extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
+    // relationship
+    public function treatments()
+    {
+        return $this->hasMany(Treatment::class);
+    }
+
 }

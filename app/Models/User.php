@@ -26,4 +26,17 @@ class User extends Authenticatable
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
     protected $hidden = ['password'];
+
+
+    // relationship
+    public function patient_treatments()
+    {
+        return $this->hasMany(Treatment::class, 'patient_id');
+    }
+
+    public function doctor_treatments()
+    {
+        return $this->hasMany(Treatment::class, 'doctor_id');
+    }
+
 }
