@@ -2,14 +2,29 @@
 
 @section('content')
 
-<a href="/administrator/services/create" class="btn btn-success">Tambah Layanan</a>
+<form action="/administrator/diseases" method="post">
+  @csrf
+  <label for="name">Tambah Data Keluhan</label>
+  <div class="input-group mb-3">
+    <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Nama keluhan" name="name" aria-describedby="submit" required>
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit" id="submit">Tambah</button>
+    </div>
+    @error('name')
+    <div class="invalid-feedback">
+      {{ $message }}
+    </div>
+    @enderror
+  </div>
+</form>
+
 @if( session('message') )
   {!! session('message') !!}
 @endif
 
 <div class="card shadow mb-4 mt-3">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Data Layanan</h6>
+    <h6 class="m-0 font-weight-bold text-primary">Data Keluhan</h6>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -18,28 +33,17 @@
               <tr>
                   <th class="text-center">*</th>
                   <th>Nama</th>
-                  <th class="text-center">Laboratorium</th>
-                  <th>Deskripsi</th>
-                  <th>Aksi</th>
+                  <th class="text-right">Aksi</th>
               </tr>
           </thead>
           <tbody>
-            @foreach ($services as $service)
+            @foreach ($diseases as $disease)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $service->name }}</td>
-                    <td class="text-center">
-                        @if ( $service->is_lab )
-                        <i class="fas fa-check-circle text-success"></i>
-                        @else
-                        <i class="fas fa-times-circle text-danger"></i>
-                        @endif
-                    </td>
-                    <td>{{ substr($service->name, 0, 30) . '...' }}</td>
-                    <td>
-                        <a href="/administrator/services/{{ $service->id }}/edit" class="btn btn-sm btn-success">ubah</a>
-                        <a href="/administrator/services/{{ $service->id }}" class="btn btn-sm btn-primary">detail</a>
-                        <form action="/administrator/services/{{ $service->id }}" class="d-inline" method="post">
+                    <td>{{ $disease->name }}</td>
+                    <td class="text-right">
+                        <a href="/administrator/diseases/{{ $disease->id }}/edit" class="btn btn-sm btn-success">ubah</a>
+                        <form action="/administrator/diseases/{{ $disease->id }}" class="d-inline" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-sm btn-danger">hapus</button>

@@ -14,7 +14,10 @@ class DiseaseController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.layouts.diseases.index', [
+            'title' => 'Data Keluhan',
+            'diseases' => Disease::where('id', '!=', 1)->get()
+        ]);
     }
 
     /**
@@ -35,7 +38,11 @@ class DiseaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255'
+        ]);
+        Disease::create($validated);
+        return redirect('/administrator/diseases')->with('message', '<div class="alert alert-success" role="alert">Data keluhan <strong>berhasil</strong> ditambah.</div>');
     }
 
     /**
@@ -57,7 +64,14 @@ class DiseaseController extends Controller
      */
     public function edit(Disease $disease)
     {
-        //
+        if( $disease->id == 1 ) :
+            return redirect('/administrator/diseases')->with('message', '<div class="alert alert-danger" role="alert">Data keluhan <strong>tidak valid!</strong>.</div>');
+        endif;
+        
+        return view('admin.layouts.diseases.edit', [
+            'title' => 'Ubah Data Keluhan ' . $disease->name,
+            'disease' => $disease
+        ]);
     }
 
     /**
@@ -69,7 +83,15 @@ class DiseaseController extends Controller
      */
     public function update(Request $request, Disease $disease)
     {
-        //
+        if( $disease->id == 1 ) :
+            return redirect('/administrator/diseases')->with('message', '<div class="alert alert-danger" role="alert">Data keluhan <strong>tidak valid!</strong>.</div>');
+        endif;
+
+        $validated = $request->validate([
+            'name' => 'required|max:255'
+        ]);
+        Disease::where('id', $disease->id)->update($validated);
+        return redirect('/administrator/diseases')->with('message', '<div class="alert alert-success" role="alert">Data keluhan <strong>berhasil</strong> diubah.</div>');
     }
 
     /**
@@ -80,6 +102,12 @@ class DiseaseController extends Controller
      */
     public function destroy(Disease $disease)
     {
-        //
+
+        if( $disease->id == 1 ) :
+            return redirect('/administrator/diseases')->with('message', '<div class="alert alert-danger" role="alert">Data keluhan <strong>tidak valid!</strong>.</div>');
+        endif;
+
+        Disease::where('id', $disease->id)->delete();
+        return redirect('/administrator/diseases')->with('message', '<div class="alert alert-success" role="alert">Data keluhan <strong>berhasil</strong> diubah.</div>');
     }
 }

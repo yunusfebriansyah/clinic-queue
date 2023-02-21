@@ -16,7 +16,7 @@
               <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
               <span class="mr-2 d-none d-lg-inline small bg-success text-white font-weight-bold px-2 rounded">{{ auth()->user()->role }}</span>
               <img class="img-profile rounded-circle"
-                  src="/admin/img/undraw_profile.svg">
+                  src="{{ url('storage/' . auth()->user()->photo) }}">
           </a>
           <!-- Dropdown - User Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
