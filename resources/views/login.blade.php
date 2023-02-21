@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login Pekerja</title>
+    <title>Halaman Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= url('') ?>/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
                           </div>
                           @endif
                           {{-- end alert --}}
-                          <form class="user" action="/admin-access/login" method="post">
+                          <form class="user" action="/login" method="post">
                             @csrf
                               <div class="form-group">
                                   <input type="text" class="form-control form-control-user" placeholder="Enter Your Username..." name="username" required>

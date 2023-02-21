@@ -14,7 +14,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.layouts.services.index', [
+            'title' => 'Data Layanan',
+            'services' => Service::all()
+        ]);
     }
 
     /**
@@ -24,7 +27,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.layouts.services.create',[
+            'title' => 'Tambah Data Layanan'
+        ]);
     }
 
     /**
@@ -35,7 +40,22 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ];
+        if( !empty($request->is_lab) ) :
+            $rules['is_lab'] = 'in:on';
+        endif;
+        $validated = $request->validate($rules);
+        if( !empty($request->is_lab) ) :
+            $validated['is_lab'] = true;
+        else :
+            $validated['is_lab'] = false;
+        endif;
+            
+        Service::create($validated);
+        return redirect('/administrator/services')->with('message', '<div class="alert alert-success mt-3" role="alert">Data layanan <strong>berhasil</strong> ditambah.</div>');
     }
 
     /**
@@ -46,7 +66,10 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return view('admin.layouts.services.show',[
+            'title' => 'Detail Layanan ' . $service->name,
+            'service' => $service
+        ]);
     }
 
     /**
@@ -57,7 +80,10 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('admin.layouts.services.edit',[
+            'title' => 'Edit Layanan ' . $service->name,
+            'service' => $service
+        ]);
     }
 
     /**
@@ -69,7 +95,22 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+            'description' => 'required',
+        ];
+        if( !empty($request->is_lab) ) :
+            $rules['is_lab'] = 'in:on';
+        endif;
+        $validated = $request->validate($rules);
+        if( !empty($request->is_lab) ) :
+            $validated['is_lab'] = true;
+        else :
+            $validated['is_lab'] = false;
+        endif;
+            
+        Service::where('id', $service->id)->update($validated);
+        return redirect('/administrator/services')->with('message', '<div class="alert alert-success mt-3" role="alert">Data layanan <strong>berhasil</strong> diubah.</div>');
     }
 
     /**
@@ -80,6 +121,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        Service::where('id', $service->id)->delete();
+        return redirect('/administrator/services')->with('message', '<div class="alert alert-success mt-3" role="alert">Data layanan <strong>berhasil</strong> dihapus.</div>');
     }
 }

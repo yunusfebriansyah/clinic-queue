@@ -22,4 +22,9 @@ class Treatment extends Model
         return $this->belongsTo(User::class, 'patient_id');
     }
 
+    public function disease()
+    {
+        return $this->belongsTo(Disease::class);
+    }
+
 }

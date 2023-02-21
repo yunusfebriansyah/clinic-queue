@@ -21,22 +21,21 @@ class HomeController extends Controller
         ]);
     }
 
-    public function loginWorker()
+    public function login()
     {
-        return view('admin.login');
+        return view('login');
     }
 
-    public function actionLoginWorker( Request $request )
+    public function actionLogin( Request $request )
     {
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
 
-        if (Auth::guard('worker')->attempt($credentials)) {
-            // var_dump($request->session());die;
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('admin-access');
+            return redirect(auth()->user()->role);
         }
 
         return back()->with('message', 'Login failed');

@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdministratorDashboardController;
+use App\Http\Controllers\DoctorDashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PatientDashboardController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,16 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/logout', [HomeController::class, 'logout']);
+Route::delete('/logout', [HomeController::class, 'logout'])->middleware('auth');
+Route::get('/patient', [PatientDashboardController::class, 'index'])->middleware('auth');
+Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('auth');
+Route::get('/login', [HomeController::class, 'login'])->middleware('guest');
+Route::post('/login', [HomeController::class, 'actionLogin'])->middleware('guest');
 
-Route::get('/admin-access', function()
-{
-  var_dump(auth()->user());
-});
+// Administartor Route
+Route::get('/administrator', [AdministratorDashboardController::class, 'index'])->middleware('auth');
+Route::resource('/administrator/services', ServiceController::class)->middleware('auth');
 
-Route::get('/admin-access/login', [HomeController::class, 'loginWorker'])->middleware('guest');
-Route::post('/admin-access/login', [HomeController::class, 'actionLoginWorker'])->middleware('guest');
-
-Route::get('/admin-access/index', function(){
-  return 'oke';
-})->middleware('auth');

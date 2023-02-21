@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('icon')->default('photos/services/default.png');
-            $table->boolean('is_lab');
+            $table->boolean('is_lab')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

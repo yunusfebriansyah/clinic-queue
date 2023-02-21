@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('treatments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id');
-            $table->foreignId('worker_id')->default('1');
+            $table->foreignId('doctor_id')->default('1');
             $table->foreignId('disease_id')->default('1');
             $table->text('complaint');
             $table->enum('status', ['menunggu antrian', 'menunggu pembayaran', 'selesai'])->default('menunggu antrian');
