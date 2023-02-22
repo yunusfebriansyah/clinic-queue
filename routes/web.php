@@ -24,16 +24,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::delete('/logout', [HomeController::class, 'logout'])->middleware('auth');
-Route::get('/patient', [PatientDashboardController::class, 'index'])->middleware('auth');
-Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('auth');
 Route::get('/login', [HomeController::class, 'login'])->middleware('guest');
 Route::post('/login', [HomeController::class, 'actionLogin'])->middleware('guest');
 
-// Administartor Route
+// Administartor Routes
 Route::get('/administrator', [AdministratorDashboardController::class, 'index'])->middleware('auth');
+Route::get('/administrator/edit-profile', [AdministratorDashboardController::class, 'editProfile'])->middleware('auth');
+Route::put('/administrator/edit-profile', [AdministratorDashboardController::class, 'updateProfile'])->middleware('auth');
+Route::get('/administrator/change-password', [AdministratorDashboardController::class, 'editPassword'])->middleware('auth');
+Route::put('/administrator/change-password', [AdministratorDashboardController::class, 'updatePassword'])->middleware('auth');
 Route::resource('/administrator/services', ServiceController::class)->middleware('auth');
 Route::resource('/administrator/diseases', DiseaseController::class)->except(['create', 'show'])->middleware('auth');
 Route::resource('/administrator/users/doctors', DoctorController::class)->middleware('auth');
 Route::resource('/administrator/users/administrators', AdministratorController::class)->middleware('auth');
 Route::resource('/administrator/users/patients', PatientController::class)->middleware('auth');
 
+
+// Patient Routes
+Route::get('/patient', [PatientDashboardController::class, 'index'])->middleware('auth');
+
+// Doctor Routes
+Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('auth');
