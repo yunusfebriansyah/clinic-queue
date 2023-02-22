@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdministratorDashboardController extends Controller
 {
@@ -27,7 +28,8 @@ class AdministratorDashboardController extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
-            'username' => 'required|max:255'
+            'username' => 'required|max:255',
+            'photo' => 'image|file|max:1500'
         ];
 
         if( $request->username != auth()->user()->username ) :
@@ -35,6 +37,16 @@ class AdministratorDashboardController extends Controller
         endif;
 
         $validated = $request->validate($rules);
+
+        if( $request->file('photo') != null ) :
+            if( auth()->user()->photo != 'photos/profiles/avatar.png' ) :
+                Storage::delete(auth()->user()->photo);
+            endif;
+            $validated['photo'] = $request->file('photo')->store('photos/profiles');
+        else :
+            $validated['photo'] = auth()->user()->photo;
+        endif;
+
         $validated['role'] = 'administrator';
         User::where('id', auth()->user()->id)->update($validated);
         $request->session()->put('name', $validated['name']);

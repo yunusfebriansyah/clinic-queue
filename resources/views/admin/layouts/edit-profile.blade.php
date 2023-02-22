@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <form action="/administrator/edit-profile" method="post">
+        <form action="/administrator/edit-profile" method="post" enctype="multipart/form-data">
           @csrf
           @method('put')
           <div class="form-group">
@@ -29,6 +29,16 @@
             <label for="username">Username</label>
             <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', $user->username) }}" required placeholder="Isi username administrator">
             @error('username')
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="photo">Foto Profil</label>
+            <small class="text-dark font-weight-bold d-block">*kosongkan jika tidak mengubah foto</small>
+            <input type="file" name="photo" class="form-control @error('photo') is-invalid @enderror">
+            @error('photo')
             <div class="invalid-feedback">
               {{ $message }}
             </div>
