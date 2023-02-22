@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\AdministratorDashboardController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\DoctorController;
@@ -32,4 +33,5 @@ Route::get('/administrator', [AdministratorDashboardController::class, 'index'])
 Route::resource('/administrator/services', ServiceController::class)->middleware('auth');
 Route::resource('/administrator/diseases', DiseaseController::class)->except(['create', 'show'])->middleware('auth');
 Route::resource('/administrator/users/doctors', DoctorController::class)->middleware('auth');
+Route::resource('/administrator/users/administrators', AdministratorController::class)->middleware('auth');
 

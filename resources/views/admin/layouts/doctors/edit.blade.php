@@ -54,7 +54,7 @@
             </div>
             @enderror
           </div>
-          <p class="text-danger font-weight-bold">*password dibuat sesuai username</p>
+          <p class="text-danger font-weight-bold">*password diubah sesuai username</p>
           <div class="form-group">
             <button type="submit" class="btn btn-success px-4">Ubah</button>
           </div>
