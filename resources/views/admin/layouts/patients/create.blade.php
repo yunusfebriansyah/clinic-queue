@@ -8,11 +8,11 @@
 <div class="card shadow mb-4 mt-3">
   <div class="card-body">
 
-    <form action="/administrator/users/administrators" method="post">
+    <form action="/administrator/users/patients" method="post">
       @csrf
       <div class="form-group">
         <label for="name">Nama</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required placeholder="Isi nama administrator">
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required placeholder="Isi nama pasien">
         @error('name')
         <div class="invalid-feedback">
           {{ $message }}
@@ -21,8 +21,17 @@
       </div>
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" required placeholder="Isi username administrator">
+        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" required placeholder="Isi username pasien">
         @error('username')
+        <div class="invalid-feedback">
+          {{ $message }}
+        </div>
+        @enderror
+      </div>
+      <div class="form-group">
+        <label for="address">Alamat</label>
+        <textarea rows="5" name="address" class="form-control @error('address') is-invalid @enderror" required placeholder="Isi alamat pasien">{{ old('address') }}</textarea>
+        @error('address')
         <div class="invalid-feedback">
           {{ $message }}
         </div>

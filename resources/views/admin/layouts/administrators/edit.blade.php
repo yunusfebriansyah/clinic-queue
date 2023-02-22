@@ -20,7 +20,7 @@
           @method('put')
           <div class="form-group">
             <label for="name">Nama</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $administrator->name) }}" required placeholder="Isi nama dokter">
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $administrator->name) }}" required placeholder="Isi nama administrator">
             @error('name')
             <div class="invalid-feedback">
               {{ $message }}
@@ -29,7 +29,7 @@
           </div>
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', $administrator->username) }}" required placeholder="Isi username dokter">
+            <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', $administrator->username) }}" required placeholder="Isi username administrator">
             @error('username')
             <div class="invalid-feedback">
               {{ $message }}
