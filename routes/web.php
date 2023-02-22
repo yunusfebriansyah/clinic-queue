@@ -5,6 +5,7 @@ use App\Http\Controllers\AdministratorDashboardController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorDashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientDashboardController;
@@ -38,6 +39,7 @@ Route::resource('/administrator/diseases', DiseaseController::class)->except(['c
 Route::resource('/administrator/users/doctors', DoctorController::class)->middleware('auth');
 Route::resource('/administrator/users/administrators', AdministratorController::class)->middleware('auth');
 Route::resource('/administrator/users/patients', PatientController::class)->middleware('auth');
+Route::resource('/administrator/events', EventController::class)->middleware('auth');
 
 
 // Patient Routes

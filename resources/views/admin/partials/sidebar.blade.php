@@ -52,10 +52,10 @@
           <i class="fas fa-fw fa-book-medical"></i>
           <span>Keluhan</span></a>
   </li>
-  <li class="nav-item {{ request()->is('administrator/galeries*') ? 'active' : '' }}">
-      <a class="nav-link" href="/administrator/galeries">
+  <li class="nav-item {{ request()->is('administrator/events*') ? 'active' : '' }}">
+      <a class="nav-link" href="/administrator/events">
           <i class="fas fa-fw fa-images"></i>
-          <span>Galeri</span></a>
+          <span>Galeri Kegiatan</span></a>
   </li>
 
   <!-- Divider -->
