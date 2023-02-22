@@ -27,13 +27,13 @@
       Data Master
   </div>
 
-  <li class="nav-item {{ request()->is('administrator/users*') || request()->is('administrator/printings*') || request()->is('administrator/sizes*') || request()->is('administrator/colors*') ? 'active' : '' }}">
+  <li class="nav-item {{ request()->is('administrator/users*') || request()->is('administrator/printings*') || request()->is('administrator/sizes*') || request()->is('administrator/users*') ? 'active' : '' }}">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-users"></i>
         <span>Pengguna</span>
     </a>
-    <div id="collapseTwo" class="collapse {{ request()->is('administrator/users*') || request()->is('administrator/printings*') || request()->is('administrator/sizes*') || request()->is('administrator/colors*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapseTwo" class="collapse {{ request()->is('administrator/users*') || request()->is('administrator/printings*') || request()->is('administrator/sizes*') || request()->is('administrator/users*') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ request()->is('administrator/users/doctors*') ? 'active' : '' }}" href="/administrator/users/doctors">Dokter</a>
             <a class="collapse-item {{ request()->is('administrator/users/administrators*') ? 'active' : '' }}" href="/administrator/users/administrators">Administrator</a>

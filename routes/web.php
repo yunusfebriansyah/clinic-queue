@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministratorDashboardController;
 use App\Http\Controllers\DiseaseController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DoctorDashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PatientDashboardController;
@@ -30,4 +31,5 @@ Route::post('/login', [HomeController::class, 'actionLogin'])->middleware('guest
 Route::get('/administrator', [AdministratorDashboardController::class, 'index'])->middleware('auth');
 Route::resource('/administrator/services', ServiceController::class)->middleware('auth');
 Route::resource('/administrator/diseases', DiseaseController::class)->except(['create', 'show'])->middleware('auth');
+Route::resource('/administrator/users/doctors', DoctorController::class)->middleware('auth');
 
