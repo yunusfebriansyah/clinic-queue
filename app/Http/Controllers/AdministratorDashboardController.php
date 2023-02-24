@@ -96,6 +96,7 @@ class AdministratorDashboardController extends Controller
         User::where('id', auth()->user()->id)->update($validated);
         $request->session()->put('name', $validated['name']);
         $request->session()->put('username', $validated['username']);
+        $request->session()->put('photo', $validated['photo']);
         return redirect('/administrator/edit-profile')->with('message', '<div class="alert alert-success mt-3" role="alert">Data akun <strong>berhasil</strong> diubah.</div>');
     }
 

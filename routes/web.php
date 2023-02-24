@@ -49,6 +49,10 @@ Route::get('/administrator/load-queues', [AdministratorDashboardController::clas
 
 // Patient Routes
 Route::get('/patient', [PatientDashboardController::class, 'index'])->middleware('is_patient');
+Route::get('/patient/edit-profile', [PatientDashboardController::class, 'editProfile'])->middleware('is_patient');
+Route::put('/patient/edit-profile', [PatientDashboardController::class, 'updateProfile'])->middleware('is_patient');
+Route::get('/patient/change-password', [PatientDashboardController::class, 'editPassword'])->middleware('is_patient');
+Route::put('/patient/change-password', [PatientDashboardController::class, 'updatePassword'])->middleware('is_patient');
 
 // Doctor Routes
 Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('is_doctor');
