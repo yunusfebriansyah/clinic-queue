@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Storage;
 
 class AdministratorDashboardController extends Controller
 {
+    public function __construct()
+    {
+        Treatment::where('status', '!=', 'selesai')->where('status', '!=', 'menunggu pembayaran')->where('status', '!=', 'dibatalkan')->where('created_at', '<', Carbon::today())->update(['status' => 'ditolak']);
+    }
     
     public function index()
     {
@@ -38,8 +42,23 @@ class AdministratorDashboardController extends Controller
             $message = 'ditutup';
         endif;
         Queue::where('id', 1)->update($validated);
-        Treatment::where('status', '!=', 'selesai')->where('created_at', '<', Carbon::today())->update(['status' => 'ditolak']);
+        Treatment::where('status', '!=', 'selesai')->where('status', '!=', 'menunggu pembayaran')->where('status', '!=', 'dibatalkan')->where('created_at', '<', Carbon::today())->update(['status' => 'ditolak']);
         return redirect('/administrator')->with('message', '<div class="alert alert-success mt-3" role="alert">Antrian <strong>berhasil ' . $message . '</strong>.</div>');
+    }
+
+    public function queue()
+    {
+        return view('admin.layouts.queue', [
+            'title' => 'Data Antrian',
+            'queue_by_doctors' => User::with(['doctor_treatments'])->where('role', 'doctor')->today()->get()
+        ]);
+    }
+
+    public function loadQueue()
+    {
+        return view('admin.layouts.load-queue',[
+            'queue_by_doctors' => User::with(['doctor_treatments'])->where('role', 'doctor')->today()->get()
+        ]);
     }
 
     public function editProfile()

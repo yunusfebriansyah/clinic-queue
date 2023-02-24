@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,6 +29,29 @@ class User extends Authenticatable
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
     protected $hidden = ['password'];
 
+    // scope
+    public function scopeStatus($query, $status)
+    {
+        if( $status == 'ditangani' ) :
+            return $query->whereHas('doctor_treatments', function ($query) use ($status) {
+                $query->where('created_at', '>=', Carbon::today())->where('status', $status)->orderBy('id', 'DESC');
+            });
+        endif;
+
+        return $query->whereHas('doctor_treatments', function ($query) use ($status) {
+            $query->where('created_at', '>=', Carbon::today())->where('status', $status);
+        });
+
+    }
+
+    public function scopeToday($query)
+    {
+
+    return $query->whereHas('doctor_treatments', function ($query) {
+        $query->where('created_at', '>=', Carbon::today());
+    });
+
+    }
 
     // relationship
     public function patient_treatments()
