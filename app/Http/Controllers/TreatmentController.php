@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Disease;
 use App\Models\Treatment;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TreatmentController extends Controller
@@ -14,7 +17,12 @@ class TreatmentController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.layouts.treatments.index', [
+            'title' => 'Data Pengobatan',
+            'is_pending_treatments' => Treatment::with(['doctor', 'patient', 'disease'])->where('status', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
+            'is_payment_treatments' => Treatment::with(['doctor', 'patient', 'disease'])->where('status', 'menunggu pembayaran')->where('created_at', '>=', Carbon::today())->get(),
+            'treatments' => Treatment::with(['doctor', 'patient', 'disease'])->orderBy('id', 'DESC')->get(),
+        ]);
     }
 
     /**
@@ -46,7 +54,6 @@ class TreatmentController extends Controller
      */
     public function show(Treatment $treatment)
     {
-        //
     }
 
     /**
@@ -57,7 +64,12 @@ class TreatmentController extends Controller
      */
     public function edit(Treatment $treatment)
     {
-        //
+        return view('admin.layouts.treatments.edit', [
+            'title' => 'Data Pengobatan : ' . $treatment->patient->name,
+            'treatment' => $treatment,
+            'doctors' => User::where('role', 'doctor')->get(),
+            'diseases' => Disease::all()
+        ]);
     }
 
     /**
@@ -69,7 +81,30 @@ class TreatmentController extends Controller
      */
     public function update(Request $request, Treatment $treatment)
     {
-        //
+        $rules = [
+            'status' => 'required',
+        ];
+
+        if( $treatment->status == 'menunggu konfirmasi' ) :
+            $rules['status'] = 'required|in:ditolak,menunggu antrian';
+        endif;
+        if( $treatment->status == 'menunggu pembayaran' ) :
+            $rules['status'] = 'required|in:selesai';
+        endif;
+
+        if( !empty($request->doctor_id) ) :
+            $doctors = User::where('role', 'doctor')->get();
+            $validDoctors = '';
+            foreach ( $doctors as $doctor ):
+                $validDoctors .= $doctor->id . ',';
+            endforeach;
+            $rules['doctor_id'] = 'required|in:' . $validDoctors;
+        endif;
+        
+        $validated = $request->validate($rules);
+
+        Treatment::where('id', $treatment->id)->update($validated);
+        return redirect('/administrator/treatments')->with('message', '<div class="alert alert-success" role="alert">Pengobatan <strong>berhasil</strong> diubah ke <strong>' . $validated['status'] . '</strong>.</div>');
     }
 
     /**

@@ -204,7 +204,9 @@ class DatabaseSeeder extends Seeder
         ];
         Disease::insert($diseases);
 
-        Queue::insert([['is_open' => true]]);
+        Queue::insert([
+            ['is_open' => true, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+        ]);
 
         $treatments = [
             [

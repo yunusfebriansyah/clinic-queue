@@ -72,6 +72,11 @@
         <i class="fas fa-briefcase-medical"></i>
           <span>Pengobatan</span></a>
   </li>
+  <li class="nav-item {{ request()->is('administrator/queues*') ? 'active' : '' }}">
+      <a class="nav-link" href="/administrator/queues">
+        <i class="fas fa-user-md"></i>
+          <span>Antrian</span></a>
+  </li>
 
         
 <hr class="sidebar-divider d-none d-md-block">

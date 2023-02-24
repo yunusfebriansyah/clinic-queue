@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Queue;
+use App\Models\Treatment;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +16,30 @@ class AdministratorDashboardController extends Controller
     {
         return view('admin.layouts.index', [
             'title' => 'Dashboard Administrator',
+            'is_open' => Queue::first()->is_open,
+            'is_success_treatment' => count(Treatment::where('status', 'selesai')->get()),
+            'is_pending_treatment' => count(Treatment::where('status', 'menunggu konfirmasi')->get()),
+            'is_denied_treatment' => count(Treatment::where('status', 'dibatalkan')->get()),
         ]);
+    }
+
+    public function changeQueue(Request $request)
+    {
+        if( !empty($request->is_open) ) :
+            $validated = $request->validate([
+                'is_open' => 'in:on'
+            ]);
+        endif;
+        if( !empty($request->is_open) ) :
+            $validated['is_open'] = true;
+            $message = 'dibuka';
+        else :
+            $validated['is_open'] = false;
+            $message = 'ditutup';
+        endif;
+        Queue::where('id', 1)->update($validated);
+        Treatment::where('status', '!=', 'selesai')->where('created_at', '<', Carbon::today())->update(['status' => 'ditolak']);
+        return redirect('/administrator')->with('message', '<div class="alert alert-success mt-3" role="alert">Antrian <strong>berhasil ' . $message . '</strong>.</div>');
     }
 
     public function editProfile()

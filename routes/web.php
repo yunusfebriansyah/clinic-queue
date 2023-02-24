@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientDashboardController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,21 +30,23 @@ Route::get('/login', [HomeController::class, 'login'])->middleware('guest');
 Route::post('/login', [HomeController::class, 'actionLogin'])->middleware('guest');
 
 // Administartor Routes
-Route::get('/administrator', [AdministratorDashboardController::class, 'index'])->middleware('auth');
-Route::get('/administrator/edit-profile', [AdministratorDashboardController::class, 'editProfile'])->middleware('auth');
-Route::put('/administrator/edit-profile', [AdministratorDashboardController::class, 'updateProfile'])->middleware('auth');
-Route::get('/administrator/change-password', [AdministratorDashboardController::class, 'editPassword'])->middleware('auth');
-Route::put('/administrator/change-password', [AdministratorDashboardController::class, 'updatePassword'])->middleware('auth');
-Route::resource('/administrator/services', ServiceController::class)->middleware('auth');
-Route::resource('/administrator/diseases', DiseaseController::class)->except(['create', 'show'])->middleware('auth');
-Route::resource('/administrator/users/doctors', DoctorController::class)->middleware('auth');
-Route::resource('/administrator/users/administrators', AdministratorController::class)->middleware('auth');
-Route::resource('/administrator/users/patients', PatientController::class)->middleware('auth');
-Route::resource('/administrator/events', EventController::class)->middleware('auth');
+Route::get('/administrator', [AdministratorDashboardController::class, 'index'])->middleware('is_administrator');
+Route::post('/administrator', [AdministratorDashboardController::class, 'changeQueue'])->middleware('is_administrator');
+Route::get('/administrator/edit-profile', [AdministratorDashboardController::class, 'editProfile'])->middleware('is_administrator');
+Route::put('/administrator/edit-profile', [AdministratorDashboardController::class, 'updateProfile'])->middleware('is_administrator');
+Route::get('/administrator/change-password', [AdministratorDashboardController::class, 'editPassword'])->middleware('is_administrator');
+Route::put('/administrator/change-password', [AdministratorDashboardController::class, 'updatePassword'])->middleware('is_administrator');
+Route::resource('/administrator/services', ServiceController::class)->middleware('is_administrator');
+Route::resource('/administrator/diseases', DiseaseController::class)->except(['create', 'show'])->middleware('is_administrator');
+Route::resource('/administrator/users/doctors', DoctorController::class)->middleware('is_administrator');
+Route::resource('/administrator/users/administrators', AdministratorController::class)->middleware('is_administrator');
+Route::resource('/administrator/users/patients', PatientController::class)->middleware('is_administrator');
+Route::resource('/administrator/events', EventController::class)->middleware('is_administrator');
+Route::resource('/administrator/treatments', TreatmentController::class)->except(['destroy', 'create', 'store'])->middleware('is_administrator');
 
 
 // Patient Routes
-Route::get('/patient', [PatientDashboardController::class, 'index'])->middleware('auth');
+Route::get('/patient', [PatientDashboardController::class, 'index'])->middleware('is_patient');
 
 // Doctor Routes
-Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('auth');
+Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('is_doctor');

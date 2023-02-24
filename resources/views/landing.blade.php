@@ -45,6 +45,11 @@
             <a class="nav-link py-1 mt-1 btn my-btn-success" href="/login">Login</a>
           </li>
           @endguest
+          @auth
+          <li class="nav-item">
+            <a class="nav-link py-1 mt-1 btn my-btn-success" href="/{{ auth()->user()->role }}">Dashboard</a>
+          </li>
+          @endauth
         </ul>
       </div>
     </div>
