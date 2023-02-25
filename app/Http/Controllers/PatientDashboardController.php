@@ -13,7 +13,12 @@ class PatientDashboardController extends Controller
     public function index()
     {
         return view('patient.layouts.index', [
-            'title' => 'Dashboard Pasien'
+            'title' => 'Dashboard Pasien',
+            'is_done_treatments' => count(Treatment::where('patient_id', auth()->user()->id)->where('status', 'selesai')->get()),
+            'is_wait_treatments' => count(Treatment::where('patient_id', auth()->user()->id)->where('status', 'menunggu konfirmasi')->get()),
+            'is_queue_treatments' => count(Treatment::where('patient_id', auth()->user()->id)->where('status', 'menunggu antrian')->get()),
+            'is_payment_treatments' => count(Treatment::where('patient_id', auth()->user()->id)->where('status', 'menunggu pembayaran')->get()),
+            'is_denied_treatments' => count(Treatment::where('patient_id', auth()->user()->id)->where('status', 'ditolak')->get()) + count(Treatment::where('patient_id', auth()->user()->id)->where('status', 'dibatalkan')->get()),
         ]);
     }
 
