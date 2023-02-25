@@ -18,6 +18,7 @@
                 <th class="text-center">*</th>
                 <th>Nama Pasien</th>
                 <th>Dokter</th>
+                <th>Layanan</th>
                 <th>Penyakit</th>
                 <th>Waktu Daftar</th>
                 <th>Status Berobat</th>
@@ -30,6 +31,7 @@
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td>{{ $treatment->patient->name }}</td>
                     <td>{{ $treatment->doctor->name }}</td>
+                    <td>{{ $treatment->service->name }}</td>
                     <td>{{ $treatment->disease->name }}</td>
                     <td>{{ $treatment->created_at->diffForHumans() }}</td>
                     <td>{{ $treatment->status }}</td>
@@ -56,6 +58,7 @@
                 <th class="text-center">*</th>
                 <th>Nama Pasien</th>
                 <th>Dokter</th>
+                <th>Layanan</th>
                 <th>Penyakit</th>
                 <th>Waktu Daftar</th>
                 <th>Status Berobat</th>
@@ -68,6 +71,7 @@
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td>{{ $treatment->patient->name }}</td>
                     <td>{{ $treatment->doctor->name }}</td>
+                    <td>{{ $treatment->service->name }}</td>
                     <td>{{ $treatment->disease->name }}</td>
                     <td>{{ $treatment->created_at->diffForHumans() }}</td>
                     <td>{{ $treatment->status }}</td>
@@ -94,6 +98,7 @@
                   <th class="text-center">*</th>
                   <th>Nama Pasien</th>
                   <th>Dokter</th>
+                  <th>Layanan</th>
                   <th>Penyakit</th>
                   <th>Waktu Daftar</th>
                   <th>Status Berobat</th>
@@ -105,6 +110,7 @@
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td>{{ $treatment->patient->name }}</td>
                     <td>{{ $treatment->doctor->name }}</td>
+                    <td>{{ $treatment->service->name }}</td>
                     <td>{{ $treatment->disease->name }}</td>
                     <td>{{ $treatment->created_at->diffForHumans() }}</td>
                     <td>{{ $treatment->status }}</td>

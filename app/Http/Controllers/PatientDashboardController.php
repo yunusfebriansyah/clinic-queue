@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Treatment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,6 +14,23 @@ class PatientDashboardController extends Controller
     {
         return view('patient.layouts.index', [
             'title' => 'Dashboard Pasien'
+        ]);
+    }
+
+    public function queue(Treatment $treatment)
+    {
+        return view('patient.layouts.queue', [
+            'title' => 'Data Antrian ' . $treatment->doctor->name,
+            'queue' => User::with(['doctor_treatments'])->where('role', 'doctor')->where('id', $treatment->doctor_id)->today()->first(),
+            'my_queue' => $treatment
+        ]);
+    }
+
+    public function loadQueue(Treatment $treatment)
+    {
+        return view('patient.layouts.load-queue', [
+            'queue' => User::with(['doctor_treatments'])->where('role', 'doctor')->where('id', $treatment->doctor_id)->today()->first(),
+            'my_queue' => $treatment
         ]);
     }
 

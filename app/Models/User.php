@@ -48,7 +48,7 @@ class User extends Authenticatable
     {
 
     return $query->whereHas('doctor_treatments', function ($query) {
-        $query->where('created_at', '>=', Carbon::today());
+        $query->where('created_at', '>=', Carbon::today())->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi');
     });
 
     }

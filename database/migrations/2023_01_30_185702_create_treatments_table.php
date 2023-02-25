@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('patient_id');
             $table->foreignId('doctor_id')->default('1');
             $table->foreignId('disease_id')->default('1');
+            $table->foreignId('service_id');
             $table->text('complaint');
             $table->enum('status', ['menunggu konfirmasi', 'menunggu antrian', 'ditangani', 'menunggu pembayaran', 'selesai', 'dibatalkan', 'ditolak'])->default('menunggu konfirmasi');
             $table->timestamps();

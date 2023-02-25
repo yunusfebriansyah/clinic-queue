@@ -19,9 +19,9 @@ class TreatmentController extends Controller
     {
         return view('admin.layouts.treatments.index', [
             'title' => 'Data Pengobatan',
-            'is_pending_treatments' => Treatment::with(['doctor', 'patient', 'disease'])->where('status', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
-            'is_payment_treatments' => Treatment::with(['doctor', 'patient', 'disease'])->where('status', 'menunggu pembayaran')->where('created_at', '>=', Carbon::today())->get(),
-            'treatments' => Treatment::with(['doctor', 'patient', 'disease'])->orderBy('id', 'DESC')->get(),
+            'is_pending_treatments' => Treatment::with(['doctor', 'patient', 'disease', 'service'])->where('status', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
+            'is_payment_treatments' => Treatment::with(['doctor', 'patient', 'disease', 'service'])->where('status', 'menunggu pembayaran')->where('created_at', '>=', Carbon::today())->get(),
+            'treatments' => Treatment::with(['doctor', 'patient', 'disease', 'service'])->orderBy('id', 'DESC')->get(),
         ]);
     }
 

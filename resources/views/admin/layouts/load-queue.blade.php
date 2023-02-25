@@ -54,8 +54,8 @@
                   </div>
               </div>
               <hr>
-              @endif
               @break
+              @endif
               @endforeach
 
               <div class="table-responsive">
@@ -63,6 +63,7 @@
                       <thead>
                           <tr>
                               <th class="text-center"><i class="fas fa-arrow-up"></i></th>
+                              <th class="text-center">No Antrian</th>
                               <th>Nama</th>
                           </tr>
                       </thead>
@@ -73,6 +74,7 @@
                               <td class="text-center">
                                   <img src="{{ url('storage/' . $treatment->patient->photo) }}" alt="{{ $treatment->patient->name }}" class="rounded" height="80">
                               </td>
+                              <td class="text-center align-middle h4 font-weight-bold">{{ $loop->iteration }}</td>
                               <td class="align-middle">{{ $treatment->patient->name }}</td>
                           </tr>
                           @endif

@@ -9,6 +9,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientDashboardController;
+use App\Http\Controllers\PatientTreatmentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,11 @@ Route::get('/patient/edit-profile', [PatientDashboardController::class, 'editPro
 Route::put('/patient/edit-profile', [PatientDashboardController::class, 'updateProfile'])->middleware('is_patient');
 Route::get('/patient/change-password', [PatientDashboardController::class, 'editPassword'])->middleware('is_patient');
 Route::put('/patient/change-password', [PatientDashboardController::class, 'updatePassword'])->middleware('is_patient');
+Route::get('/patient/registers', [PatientTreatmentController::class, 'create'])->middleware('is_patient');
+Route::post('/patient/registers', [PatientTreatmentController::class, 'store'])->middleware('is_patient');
+Route::resource('/patient/treatments', PatientTreatmentController::class)->except(['create', 'store', 'destroy', 'show'])->middleware('is_patient');
+Route::get('/patient/queue/{treatment}', [PatientDashboardController::class, 'queue'])->middleware('is_patient');
+Route::get('/patient/load-queue/{treatment}', [PatientDashboardController::class, 'loadQueue'])->middleware('is_patient');
 
 // Doctor Routes
 Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('is_doctor');

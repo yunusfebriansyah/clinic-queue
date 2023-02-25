@@ -211,6 +211,7 @@ class DatabaseSeeder extends Seeder
         $treatments = [
             [
                 'patient_id' => '5',
+                'service_id' => '1',
                 'complaint' => 'Lorem ipsum dolor sit amet ut doseui tempor',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

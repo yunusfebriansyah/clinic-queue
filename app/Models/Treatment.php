@@ -27,4 +27,9 @@ class Treatment extends Model
         return $this->belongsTo(Disease::class);
     }
 
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
 }

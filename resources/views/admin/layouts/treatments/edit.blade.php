@@ -21,6 +21,8 @@
           <dd class="col-sm-9">: {{ $treatment->patient->address }}</dd>
           <dt class="col-sm-3">Keluhan Pasien</dt>
           <dd class="col-sm-9">: {{ $treatment->complaint }}</dd>
+          <dt class="col-sm-3">Layanan</dt>
+          <dd class="col-sm-9">: {{ $treatment->service->name }}</dd>
           <dt class="col-sm-3">Penyakit Pasien</dt>
           <dd class="col-sm-9">: {{ $treatment->disease->name }}</dd>
           <dt class="col-sm-3">Nama Dokter</dt>
