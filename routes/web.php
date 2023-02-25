@@ -29,6 +29,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::delete('/logout', [HomeController::class, 'logout'])->middleware('auth');
 Route::get('/login', [HomeController::class, 'login'])->middleware('guest');
 Route::post('/login', [HomeController::class, 'actionLogin'])->middleware('guest');
+Route::get('/register', [HomeController::class, 'register'])->middleware('guest');
+Route::post('/register', [HomeController::class, 'actionRegister'])->middleware('guest');
 
 // Administartor Routes
 Route::get('/administrator', [AdministratorDashboardController::class, 'index'])->middleware('is_administrator');

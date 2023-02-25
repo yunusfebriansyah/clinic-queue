@@ -35,6 +35,9 @@
                               <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                           </div>
                           {{-- alert --}}
+                          @if( session('success') )
+                            {!! session('success') !!}
+                          @endif
                           @if (session('message'))
                           <div class="alert alert-danger" role="alert">
                             <strong>Login gagal!</strong> Silahkan periksa data anda!
@@ -46,18 +49,19 @@
                           </div>
                           @endif
                           {{-- end alert --}}
-                          <form class="user" action="/login" method="post">
+                          <form class="user mb-3" action="/login" method="post">
                             @csrf
                               <div class="form-group">
-                                  <input type="text" class="form-control form-control-user" placeholder="Enter Your Username..." name="username" required>
+                                  <input type="text" class="form-control form-control-user" placeholder="Isi username anda" name="username" required>
                               </div>
                               <div class="form-group">
-                                  <input type="password" class="form-control form-control-user" placeholder="Password" placeholder="Enter your password..." name="password" required>
+                                  <input type="password" class="form-control form-control-user" placeholder="Password" placeholder="Isi password anda" name="password" required>
                               </div>
                               <button type="submit" class="btn btn-success btn-user btn-block">
                                   Login
                               </button>
                           </form>
+                          <a href="/register" class="text-success d-block text-center text-decoration-none">belum punya akun pasien?</a>
                         </div>
                     </div>
                 </div>

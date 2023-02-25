@@ -42,6 +42,9 @@
           </li>
           @guest
           <li class="nav-item">
+            <a class="nav-link py-1 mt-1 btn my-btn-success" href="/register">Daftar</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link py-1 mt-1 btn my-btn-success" href="/login">Login</a>
           </li>
           @endguest

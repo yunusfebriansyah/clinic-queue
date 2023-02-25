@@ -26,6 +26,11 @@ class HomeController extends Controller
         return view('login');
     }
 
+    public function register()
+    {
+        return view('register');
+    }
+
     public function actionLogin( Request $request )
     {
         $credentials = $request->validate([
@@ -39,6 +44,26 @@ class HomeController extends Controller
         }
 
         return back()->with('message', 'Login failed');
+    }
+
+    public function actionRegister( Request $request )
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'username' => 'required|max:255|unique:users,username',
+            'address' => 'required',
+            'password' => 'required|min:8|max:255',
+            'confirm_password' => 'same:password'
+        ]);
+
+        unset($validated['confirm_password']);
+
+        $validated['role'] = 'patient';
+        $validated['password'] = bcrypt($validated['password']);
+        User::create($validated);
+        return redirect('/login')->with('success', '<div class="alert alert-success mt-3" role="alert">Data akun <strong>berhasil dibuat</strong>. Silakan login.</div>');
+
+        
     }
 
     public function logout(Request $request)
