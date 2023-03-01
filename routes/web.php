@@ -64,3 +64,7 @@ Route::get('/patient/load-queue/{treatment}', [PatientDashboardController::class
 
 // Doctor Routes
 Route::get('/doctor', [DoctorDashboardController::class, 'index'])->middleware('is_doctor');
+Route::get('/doctor/edit-profile', [DoctorDashboardController::class, 'editProfile'])->middleware('is_doctor');
+Route::put('/doctor/edit-profile', [DoctorDashboardController::class, 'updateProfile'])->middleware('is_doctor');
+Route::get('/doctor/change-password', [DoctorDashboardController::class, 'editPassword'])->middleware('is_doctor');
+Route::put('/doctor/change-password', [DoctorDashboardController::class, 'updatePassword'])->middleware('id_doctor');
