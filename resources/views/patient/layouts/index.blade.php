@@ -33,7 +33,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $is_wait_treatments }}</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-check fa-2x text-warning"></i>
+                        <i class="fas fa-spinner fa-2x text-warning"></i>
                     </div>
                 </div>
             </div>
