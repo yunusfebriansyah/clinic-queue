@@ -21,6 +21,13 @@ class DoctorDashboardController extends Controller
         ]);
     }
 
+    public function queues()
+    {
+        return view('doctor.layouts.queues.index', [
+            'title' => 'Data Antrian Hari Ini',
+            'queues' => Treatment::with(['patient', 'disease', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get()
+        ]);
+    }
 
     public function editProfile()
     {
