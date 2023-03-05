@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Disease;
 use App\Models\Treatment;
 use App\Models\User;
 use Carbon\Carbon;
@@ -19,9 +18,9 @@ class TreatmentController extends Controller
     {
         return view('admin.layouts.treatments.index', [
             'title' => 'Data Pengobatan',
-            'is_pending_treatments' => Treatment::with(['doctor', 'patient', 'disease', 'service'])->where('status', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
-            'is_payment_treatments' => Treatment::with(['doctor', 'patient', 'disease', 'service'])->where('status', 'menunggu pembayaran')->where('created_at', '>=', Carbon::today())->get(),
-            'treatments' => Treatment::with(['doctor', 'patient', 'disease', 'service'])->orderBy('id', 'DESC')->get(),
+            'is_pending_treatments' => Treatment::with(['doctor', 'patient', 'service'])->where('status', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
+            'is_payment_treatments' => Treatment::with(['doctor', 'patient', 'service'])->where('status', 'menunggu pembayaran')->where('created_at', '>=', Carbon::today())->get(),
+            'treatments' => Treatment::with(['doctor', 'patient', 'service'])->orderBy('id', 'DESC')->get(),
         ]);
     }
 
@@ -67,8 +66,7 @@ class TreatmentController extends Controller
         return view('admin.layouts.treatments.edit', [
             'title' => 'Data Pengobatan : ' . $treatment->patient->name,
             'treatment' => $treatment,
-            'doctors' => User::where('role', 'doctor')->get(),
-            'diseases' => Disease::all()
+            'doctors' => User::where('role', 'doctor')->get()
         ]);
     }
 

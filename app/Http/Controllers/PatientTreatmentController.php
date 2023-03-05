@@ -18,7 +18,7 @@ class PatientTreatmentController extends Controller
     {
         return view('patient.layouts.treatments.index', [
             'title' => 'Data Berobat Anda',
-            'treatments' => Treatment::with(['doctor', 'disease', 'service'])->where('patient_id', auth()->user()->id)->orderBy('id', 'DESC')->get()
+            'treatments' => Treatment::with(['doctor', 'service'])->where('patient_id', auth()->user()->id)->orderBy('id', 'DESC')->get()
         ]);
     }
 

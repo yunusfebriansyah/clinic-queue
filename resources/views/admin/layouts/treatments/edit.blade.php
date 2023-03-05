@@ -24,7 +24,7 @@
           <dt class="col-sm-3">Layanan</dt>
           <dd class="col-sm-9">: {{ $treatment->service->name }}</dd>
           <dt class="col-sm-3">Penyakit Pasien</dt>
-          <dd class="col-sm-9">: {{ $treatment->disease->name }}</dd>
+          <dd class="col-sm-9">: {{ $treatment->disease }}</dd>
           <dt class="col-sm-3">Nama Dokter</dt>
           <dd class="col-sm-9">: {{ $treatment->doctor->name }}</dd>
           <dt class="col-sm-3">Status Pengobatan</dt>

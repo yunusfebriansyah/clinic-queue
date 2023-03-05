@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Disease;
 use App\Models\Event;
 use App\Models\Service;
 use App\Models\User;
@@ -189,20 +188,6 @@ class DatabaseSeeder extends Seeder
         ];
 
         Event::insert($events);
-
-        $diseases = [
-            [
-                'name' => '-',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'name' => 'Asam Urat',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-        ];
-        Disease::insert($diseases);
 
         Queue::insert([
             ['is_open' => true, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]

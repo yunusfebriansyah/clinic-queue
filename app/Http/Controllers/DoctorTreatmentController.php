@@ -18,8 +18,8 @@ class DoctorTreatmentController extends Controller
     {
         return view('doctor.layouts.treatments.index', [
             'title' => 'Data Pengobatan',
-            'today_treatments' => Treatment::with(['patient', 'disease', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
-            'treatments' => Treatment::with(['patient', 'disease', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->orderBy('id', 'DESC')->get(),
+            'today_treatments' => Treatment::with(['patient', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
+            'treatments' => Treatment::with(['patient', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->orderBy('id', 'DESC')->get(),
         ]);
     }
 
@@ -72,8 +72,7 @@ class DoctorTreatmentController extends Controller
         Treatment::where('id', $treatment->id)->update(['status' => 'ditangani']);
         return view('doctor.layouts.treatments.edit', [
             'title' => 'Penanganan Pengobatan : ' . $treatment->patient->name,
-            'treatment' => Treatment::firstWhere('id', $treatment->id),
-            'diseases' => Disease::all()
+            'treatment' => Treatment::firstWhere('id', $treatment->id)
         ]);
     }
 
@@ -87,7 +86,7 @@ class DoctorTreatmentController extends Controller
     public function update(Request $request, Treatment $treatment)
     {
         $validated = $request->validate([
-            'disease_id' => 'required|numeric|min:2|exists:diseases,id'
+            'disease' => 'required'
         ]);
         $validated['status'] = 'menunggu pembayaran';
         Treatment::where('id', $treatment->id)->update($validated);

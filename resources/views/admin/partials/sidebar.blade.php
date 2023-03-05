@@ -47,11 +47,6 @@
           <i class="fas fa-fw fa-notes-medical"></i>
           <span>Layanan</span></a>
   </li>
-  <li class="nav-item {{ request()->is('administrator/diseases*') ? 'active' : '' }}">
-      <a class="nav-link" href="/administrator/diseases">
-          <i class="fas fa-fw fa-book-medical"></i>
-          <span>Keluhan</span></a>
-  </li>
   <li class="nav-item {{ request()->is('administrator/events*') ? 'active' : '' }}">
       <a class="nav-link" href="/administrator/events">
           <i class="fas fa-fw fa-images"></i>

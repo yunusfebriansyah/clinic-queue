@@ -25,7 +25,7 @@ class DoctorDashboardController extends Controller
     {
         return view('doctor.layouts.queues.index', [
             'title' => 'Data Antrian Hari Ini',
-            'queues' => Treatment::with(['patient', 'disease', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get()
+            'queues' => Treatment::with(['patient', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get()
         ]);
     }
 

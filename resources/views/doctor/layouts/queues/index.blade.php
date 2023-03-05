@@ -31,7 +31,7 @@
                   <td class="text-center">{{ $loop->iteration }}</td>
                   <td>{{ $treatment->patient->name }}</td>
                   <td>{{ $treatment->service->name }}</td>
-                  <td>{{ $treatment->disease->name }}</td>
+                  <td>{{ $treatment->disease }}</td>
                   <td>{{ $treatment->created_at->diffForHumans() }}</td>
                   <td>
                     @if ( $treatment->status == 'selesai' )
