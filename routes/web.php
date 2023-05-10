@@ -46,6 +46,7 @@ Route::resource('/administrator/users/doctors', DoctorController::class)->middle
 Route::resource('/administrator/users/administrators', AdministratorController::class)->middleware('is_administrator');
 Route::resource('/administrator/users/patients', PatientController::class)->middleware('is_administrator');
 Route::resource('/administrator/events', EventController::class)->middleware('is_administrator');
+Route::get('/administrator/treatments/print', [TreatmentController::class, 'print'])->middleware('is_administrator');
 Route::resource('/administrator/treatments', TreatmentController::class)->except(['destroy', 'create', 'store'])->middleware('is_administrator');
 Route::get('/administrator/queues', [AdministratorDashboardController::class, 'queue'])->middleware('is_administrator');
 Route::get('/administrator/load-queues', [AdministratorDashboardController::class, 'loadQueue'])->middleware('is_administrator');

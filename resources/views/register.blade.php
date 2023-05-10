@@ -80,7 +80,7 @@
                                     Daftar
                                 </button>
                             </form>
-                        <a href="/login" class="text-success d-block text-center text-decoration-none">sudah punya akun pasien?</a>
+                        <a href="/login" class="text-success d-block text-center text-decoration-none">sudah punya akun?</a>
                         </div>
                     </div>
                 </div>

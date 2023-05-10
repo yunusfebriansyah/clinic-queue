@@ -61,7 +61,7 @@
                                   Login
                               </button>
                           </form>
-                          <a href="/register" class="text-success d-block text-center text-decoration-none">belum punya akun pasien?</a>
+                          <a href="/register" class="text-success d-block text-center text-decoration-none">belum punya akun?</a>
                         </div>
                     </div>
                 </div>
