@@ -6,6 +6,30 @@
   {!! session('message') !!}
 @endif
 
+<div class="row justify-content-end">
+  <div class="col-12 col-md-6 col-xl-4">
+    <form action="/doctor/treatments" method="get">
+      <div class="input-group mb-3">
+        <select name="date" class="form-control">
+          <option value="">Semua</option>
+          <option value="hari ini" {{ request('date') == 'hari ini' ? 'selected' : '' }}>Hari ini</option>
+          <option value="minggu ini" {{ request('date') == 'minggu ini' ? 'selected' : '' }}>Minggu ini</option>
+          <option value="bulan ini" {{ request('date') == 'bulan ini' ? 'selected' : '' }}>Bulan ini</option>
+          <option value="tahun ini" {{ request('date') == 'tahun ini' ? 'selected' : '' }}>Tahun ini</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row justify-content-end mb-3">
+  <div class="col-12">
+    <a target="_blank" href="/doctor/treatments/print?date={{ request('date') }}" class="btn btn-danger float-right"><i class="fas fa-print"></i> Cetak PDF</a>
+  </div>
+</div>
+
 <div class="card shadow mb-4 mt-3">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Data Pengobatan Hari Ini</h6>

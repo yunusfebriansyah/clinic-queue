@@ -18,8 +18,8 @@ class DoctorTreatmentController extends Controller
     {
         return view('doctor.layouts.treatments.index', [
             'title' => 'Data Pengobatan',
-            'today_treatments' => Treatment::with(['patient', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
-            'treatments' => Treatment::with(['patient', 'service'])->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->orderBy('id', 'DESC')->get(),
+            'today_treatments' => Treatment::with(['patient', 'service'])->date(request('date'))->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->where('created_at', '>=', Carbon::today())->get(),
+            'treatments' => Treatment::with(['patient', 'service'])->date(request('date'))->where('doctor_id', auth()->user()->id)->where('status', '!=', 'ditolak')->where('status', '!=', 'dibatalkan')->where('status', '!=', 'menunggu konfirmasi')->orderBy('id', 'DESC')->get(),
         ]);
     }
 
@@ -103,4 +103,28 @@ class DoctorTreatmentController extends Controller
     {
         //
     }
+
+    public function print()
+    {
+        $treatments = Treatment::with(['doctor', 'patient', 'service'])->date(request('date'))->where('doctor_id', auth()->user()->id)->orderBy('id', 'DESC')->get();
+        $title = 'Data Pengobatan ' . auth()->user()->name;
+        $date = 'Semua Waktu';
+        if( !empty(request('date')) ) :
+            if( request('date') == 'bulan ini' ) :
+                $date = Carbon::now()->isoFormat('MMMM Y');
+            elseif( request('date') == 'tahun ini' ) :
+                $date =  Carbon::now()->isoFormat('Y');
+            elseif( request('date') == 'hari ini' ) :
+                $date =  Carbon::now()->isoFormat('D MMMM Y');
+            elseif( request('date') == 'minggu ini' ) :
+                $date =  Carbon::now()->startOfWeek()->isoFormat('D MMMM Y') . ' - ' . Carbon::now()->endOfWeek()->isoFormat('D MMMM Y');
+            endif;
+        endif;
+        return view('doctor.layouts.treatments.print', [
+            'title' => $title,
+            'treatments' => $treatments,
+            'date' => $date
+        ]);
+    }
+
 }

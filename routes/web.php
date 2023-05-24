@@ -70,5 +70,6 @@ Route::get('/doctor/edit-profile', [DoctorDashboardController::class, 'editProfi
 Route::put('/doctor/edit-profile', [DoctorDashboardController::class, 'updateProfile'])->middleware('is_doctor');
 Route::get('/doctor/change-password', [DoctorDashboardController::class, 'editPassword'])->middleware('is_doctor');
 Route::put('/doctor/change-password', [DoctorDashboardController::class, 'updatePassword'])->middleware('id_doctor');
+Route::get('/doctor/treatments/print', [DoctorTreatmentController::class, 'print'])->middleware('is_doctor');
 Route::resource('/doctor/treatments', DoctorTreatmentController::class)->except(['create', 'store', 'destroy'])->middleware('is_doctor');
 Route::get('/doctor/queues', [DoctorDashboardController::class, 'queues'])->middleware('is_doctor');
