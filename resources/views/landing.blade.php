@@ -69,8 +69,13 @@
         <div class="col-12 col-lg-7 col-md-7">
           <h1>Klinik Pratama<br>Berkah Medical Center</h1>
           <p class="hero-text h5 mb-3">Tulus, Ikhlas, Antusias</p>
-          <a href="#" class="btn my-btn-success">Berobat Sekarang</a>
-          <a href="#" class="btn my-btn-dark ms-2">Kontak Kami</a>
+          @auth
+            <a href="/{{ auth()->user()->role }}" class="btn my-btn-success">Berobat Sekarang</a>
+          @endauth
+          @guest
+            <a href="/login" class="btn my-btn-success">Berobat Sekarang</a>
+          @endguest
+          <a href="#footer" class="btn my-btn-dark ms-2">Kontak Kami</a>
         </div>
         <div class="col-lg-5 col-md-5 d-none d-md-block pt-5">
           <img src="{{ url('assets') }}/images/logo-transparent.png" alt="Banner Image" width="100%" class="hero-logo">
@@ -208,7 +213,7 @@
   {{-- end galeri --}}
 
   {{-- footer --}}
-  <footer class="my-bg-dark">
+  <footer class="my-bg-dark" id="footer">
     <div class="container py-5">
       <div class="row">
         <div class="col-12 col-md-6">

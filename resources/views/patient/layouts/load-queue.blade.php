@@ -109,7 +109,7 @@
                     <dt class="col-sm-3">Layanan</dt>
                     <dd class="col-sm-9">: {{ $myTreatment->service->name }}</dd>
                     <dt class="col-sm-3">Penyakit</dt>
-                    <dd class="col-sm-9">: {{ $myTreatment->disease->name }}</dd>
+                    <dd class="col-sm-9">: {{ $myTreatment->disease }}</dd>
                     <dt class="col-sm-3">Nama Dokter</dt>
                     <dd class="col-sm-9">: {{ $myTreatment->doctor->name }}</dd>
                     <dt class="col-sm-3">Status Pengobatan</dt>

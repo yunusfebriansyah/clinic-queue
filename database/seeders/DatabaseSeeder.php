@@ -43,9 +43,9 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Imam Alfariji',
-                'username' => 'imam',
-                'password' => bcrypt('alfariji'),
+                'name' => 'Eva Setianingsih',
+                'username' => 'eva',
+                'password' => bcrypt('eva'),
                 'address' => 'Lorem Ipsum',
                 'photo' => 'photos/profiles/avatar.png',
                 'role' => 'administrator',
@@ -79,9 +79,9 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Bagas Aditama',
-                'username' => 'bagas',
-                'password' => bcrypt('aditama'),
+                'name' => 'Sikan',
+                'username' => 'sikan',
+                'password' => bcrypt('sikan'),
                 'address' => 'Lorem Ipsum',
                 'photo' => 'photos/profiles/avatar.png',
                 'role' => 'patient',

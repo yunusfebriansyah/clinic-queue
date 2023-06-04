@@ -14,10 +14,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('landing',[
-            'universalServices' => Service::where('is_lab', false)->limit(5)->get(),
-            'labServices' => Service::where('is_lab', true)->limit(3)->get(),
-            'doctors' => User::where('role', 'doctor')->limit(2)->get(),
-            'events' => Event::limit(3)->get()
+            'universalServices' => Service::where('is_lab', false)->get(),
+            'labServices' => Service::where('is_lab', true)->get(),
+            'doctors' => User::where('role', 'doctor')->get(),
+            'events' => Event::all()
         ]);
     }
 
