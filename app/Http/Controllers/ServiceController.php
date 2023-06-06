@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Treatment;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -15,6 +16,7 @@ class ServiceController extends Controller
     public function index()
     {
         return view('admin.layouts.services.index', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Layanan',
             'services' => Service::all()
         ]);
@@ -28,6 +30,7 @@ class ServiceController extends Controller
     public function create()
     {
         return view('admin.layouts.services.create',[
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Tambah Data Layanan'
         ]);
     }
@@ -67,6 +70,7 @@ class ServiceController extends Controller
     public function show(Service $service)
     {
         return view('admin.layouts.services.show',[
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Detail Layanan ' . $service->name,
             'service' => $service
         ]);
@@ -81,6 +85,7 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         return view('admin.layouts.services.edit',[
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Edit Layanan ' . $service->name,
             'service' => $service
         ]);

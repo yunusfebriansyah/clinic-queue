@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,6 +17,7 @@ class EventController extends Controller
     public function index()
     {
         return view('admin.layouts.events.index', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Galeri Kegiatan',
             'events' => Event::all()
         ]);
@@ -29,6 +31,7 @@ class EventController extends Controller
     public function create()
     {
         return view('admin.layouts.events.create', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Tambah Data Galeri Kegiatan'
         ]);
     }
@@ -62,6 +65,7 @@ class EventController extends Controller
     public function show(Event $event)
     {
         return view('admin.layouts.events.show', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Detail Galeri Kegiatan : ' . $event->name,
             'event' => $event
         ]);
@@ -76,6 +80,7 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         return view('admin.layouts.events.edit', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Ubah Galeri Kegiatan : ' . $event->name,
             'event' => $event
         ]);

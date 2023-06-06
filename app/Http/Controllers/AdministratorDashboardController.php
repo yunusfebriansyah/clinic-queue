@@ -19,6 +19,7 @@ class AdministratorDashboardController extends Controller
     public function index()
     {
         return view('admin.layouts.index', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Dashboard Administrator',
             'is_open' => Queue::first()->is_open,
             'is_success_treatment' => count(Treatment::where('status', 'selesai')->get()),
@@ -49,6 +50,7 @@ class AdministratorDashboardController extends Controller
     public function queue()
     {
         return view('admin.layouts.queue', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Antrian',
             'queue_by_doctors' => User::with(['doctor_treatments'])->where('role', 'doctor')->today()->get()
         ]);
@@ -57,6 +59,7 @@ class AdministratorDashboardController extends Controller
     public function loadQueue()
     {
         return view('admin.layouts.load-queue',[
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'queue_by_doctors' => User::with(['doctor_treatments'])->where('role', 'doctor')->today()->get()
         ]);
     }
@@ -64,6 +67,7 @@ class AdministratorDashboardController extends Controller
     public function editProfile()
     {
         return view('admin.layouts.edit-profile', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Ubah Profil',
             'user' => User::firstWhere('id', auth()->user()->id)
         ]);
@@ -103,6 +107,7 @@ class AdministratorDashboardController extends Controller
     public function editPassword()
     {
         return view('admin.layouts.edit-password', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Ubah Password',
             'user' => User::firstWhere('id', auth()->user()->id)
         ]);

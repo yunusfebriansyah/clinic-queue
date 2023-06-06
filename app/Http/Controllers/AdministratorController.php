@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Treatment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class AdministratorController extends Controller
     public function index()
     {
         return view('admin.layouts.administrators.index', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Administrator',
             'administrators' => User::where('role', 'administrator')->where('id', '!=', 1)->get()
         ]);
@@ -28,6 +30,7 @@ class AdministratorController extends Controller
     public function create()
     {
         return view('admin.layouts.administrators.create', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Tambah Data Administrator'
         ]);
     }
@@ -62,6 +65,7 @@ class AdministratorController extends Controller
             return redirect('/administrator/users/administrators')->with('message', '<div class="alert alert-danger mt-3" role="alert">Data administrator <strong>tidak valid!</strong>.</div>');
         endif;
         return view('admin.layouts.administrators.show', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Detail Data Administrator : ' . $administrator->name,
             'administrator' => $administrator
         ]);
@@ -82,6 +86,7 @@ class AdministratorController extends Controller
             return redirect('/administrator/users/administrators')->with('message', '<div class="alert alert-danger mt-3" role="alert">Data administrator <strong>tidak valid!</strong>.</div>');
         endif;
         return view('admin.layouts.administrators.edit', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Ubah Data Dokter : ' . $administrator->name,
             'administrator' => $administrator
         ]);

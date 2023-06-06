@@ -35,12 +35,13 @@ class HomeController extends Controller
     {
         $credentials = $request->validate([
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'role' => 'required'
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect(auth()->user()->role);
+            return redirect($credentials['role']);
         }
 
         return back()->with('message', 'Login failed');

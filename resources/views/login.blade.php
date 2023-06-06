@@ -32,7 +32,7 @@
                     <div class="card-body p-0">
                       <div class="p-5">
                           <div class="text-center">
-                              <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                              <h1 class="h4 text-gray-900 mb-4">Login Akun</h1>
                           </div>
                           {{-- alert --}}
                           @if( session('success') )
@@ -56,6 +56,13 @@
                               </div>
                               <div class="form-group">
                                   <input type="password" class="form-control form-control-user" placeholder="Password" placeholder="Isi password anda" name="password" required>
+                              </div>
+                              <div class="form-group">
+                                  <select name="role" id="role" class="form-control form-select-user rounded-pill">
+                                    <option value="patient">Pasien</option>
+                                    <option value="doctor">Dokter</option>
+                                    <option value="administrator">Administrator</option>
+                                  </select>
                               </div>
                               <button type="submit" class="btn btn-success btn-user btn-block">
                                   Login

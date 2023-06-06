@@ -65,7 +65,7 @@
   <li class="nav-item {{ request()->is('administrator/treatments*') ? 'active' : '' }}">
       <a class="nav-link" href="/administrator/treatments">
         <i class="fas fa-briefcase-medical"></i>
-          <span>Pengobatan</span></a>
+          <span>Pengobatan <span class="badge bg-white text-success rounded-pill px-2">{{ $notif_treatment }}</span></span></a>
   </li>
   <li class="nav-item {{ request()->is('administrator/queues*') ? 'active' : '' }}">
       <a class="nav-link" href="/administrator/queues">

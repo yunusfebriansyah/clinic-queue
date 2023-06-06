@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Treatment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class DoctorController extends Controller
     public function index()
     {
         return view('admin.layouts.doctors.index', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Dokter',
             'doctors' => User::where('role', 'doctor')->get()
         ]);
@@ -28,6 +30,7 @@ class DoctorController extends Controller
     public function create()
     {
         return view('admin.layouts.doctors.create', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Tambah Data Dokter'
         ]);
     }
@@ -64,6 +67,7 @@ class DoctorController extends Controller
             return redirect('/administrator/users/doctors')->with('message', '<div class="alert alert-danger mt-3" role="alert">Data dokter <strong>tidak valid!</strong>.</div>');
         endif;
         return view('admin.layouts.doctors.show', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Detail Data Dokter : ' . $doctor->name,
             'doctor' => $doctor
         ]);
@@ -81,6 +85,7 @@ class DoctorController extends Controller
             return redirect('/administrator/users/doctors')->with('message', '<div class="alert alert-danger mt-3" role="alert">Data dokter <strong>tidak valid!</strong>.</div>');
         endif;
         return view('admin.layouts.doctors.edit', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Ubah Data Dokter : ' . $doctor->name,
             'doctor' => $doctor
         ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Treatment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class PatientController extends Controller
     public function index()
     {
         return view('admin.layouts.patients.index', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Pasien',
             'patients' => User::where('role', 'patient')->get()
         ]);
@@ -28,6 +30,7 @@ class PatientController extends Controller
     public function create()
     {
         return view('admin.layouts.patients.create', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Tambah Data Pasien'
         ]);
     }
@@ -63,6 +66,7 @@ class PatientController extends Controller
             return redirect('/administrator/users/patients')->with('message', '<div class="alert alert-danger mt-3" role="alert">Data pasien <strong>tidak valid!</strong>.</div>');
         endif;
         return view('admin.layouts.patients.show', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Detail Data Pasien : ' . $patient->name,
             'patient' => $patient
         ]);
@@ -80,6 +84,7 @@ class PatientController extends Controller
             return redirect('/administrator/users/patients')->with('message', '<div class="alert alert-danger mt-3" role="alert">Data pasien <strong>tidak valid!</strong>.</div>');
         endif;
         return view('admin.layouts.patients.edit', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Ubah Data Pasien : ' . $patient->name,
             'patient' => $patient
         ]);

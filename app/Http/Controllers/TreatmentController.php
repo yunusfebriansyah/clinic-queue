@@ -20,6 +20,7 @@ class TreatmentController extends Controller
         $isPaymentTreatments = Treatment::with(['doctor', 'patient', 'service'])->date(request('date'))->where('status', 'menunggu pembayaran')->where('created_at', '>=', Carbon::today())->get();
         $treatments = Treatment::with(['doctor', 'patient', 'service'])->date(request('date'))->orderBy('id', 'DESC')->get();
         return view('admin.layouts.treatments.index', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Pengobatan',
             'is_pending_treatments' => $isPendingTreatments,
             'is_payment_treatments' => $isPaymentTreatments,
@@ -67,6 +68,7 @@ class TreatmentController extends Controller
     public function edit(Treatment $treatment)
     {
         return view('admin.layouts.treatments.edit', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => 'Data Pengobatan : ' . $treatment->patient->name,
             'treatment' => $treatment,
             'doctors' => User::where('role', 'doctor')->get()
@@ -136,6 +138,7 @@ class TreatmentController extends Controller
             endif;
         endif;
         return view('admin.layouts.treatments.print', [
+            'notif_treatment' => count(Treatment::where('status', '!=', 'ditolak')->where('status', '!=', 'selesai')->where('status', '!=', 'dibatalkan')->get()),
             'title' => $title,
             'treatments' => $treatments,
             'date' => $date
