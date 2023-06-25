@@ -45,7 +45,7 @@
                 <th>Layanan</th>
                 <th>Penyakit</th>
                 <th>Waktu Daftar</th>
-                <th>Status Berobat</th>
+                <th>Berobat Jalan</th>
                 <th class="text-right">Aksi</th>
               </tr>
           </thead>
@@ -95,6 +95,7 @@
                 <th>Layanan</th>
                 <th>Penyakit</th>
                 <th>Waktu Daftar</th>
+                <th>Berobat Jalan</th>
                 <th>Status Berobat</th>
                 <th class="text-right">Aksi</th>
               </tr>
@@ -108,6 +109,7 @@
                     <td>{{ $treatment->service->name }}</td>
                     <td>{{ $treatment->disease }}</td>
                     <td>{{ $treatment->created_at->diffForHumans() }}</td>
+                    <td>{{ $treatment->control }}</td>
                     <td>
                       @if ( $treatment->status == 'selesai' )
                       <span class="bg-success text-white px-2 rounded">{{ $treatment->status }}</span>
@@ -145,6 +147,7 @@
                   <th>Layanan</th>
                   <th>Penyakit</th>
                   <th>Waktu Daftar</th>
+                  <th>Berobat Jalan</th>
                   <th>Status Berobat</th>
               </tr>
           </thead>
@@ -157,6 +160,7 @@
                     <td>{{ $treatment->service->name }}</td>
                     <td>{{ $treatment->disease }}</td>
                     <td>{{ $treatment->created_at->diffForHumans() }}</td>
+                    <td>{{ $treatment->control }}</td>
                     <td>
                       @if ( $treatment->status == 'selesai' )
                       <span class="bg-success text-white px-2 rounded">{{ $treatment->status }}</span>

@@ -28,6 +28,8 @@
           <dd class="col-sm-9 font-weight-bold text-info">: {{ $treatment->status }}</dd>
           <dt class="col-sm-3">Waktu Pengobatan</dt>
           <dd class="col-sm-9">: {{ $treatment->created_at->diffForHumans() }}</dd>
+          <dt class="col-sm-3">Berobat Jalan</dt>
+          <dd class="col-sm-9">: {{ $treatment->control }}</dd>
         </dl>
       </div>
     </div>

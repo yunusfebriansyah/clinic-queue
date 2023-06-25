@@ -54,6 +54,7 @@
           <th>Layanan</th>
           <th>Penyakit</th>
           <th>Waktu Daftar</th>
+          <th>Berobat Jalan</th>
           <th>Status Berobat</th>
       </tr>
   </thead>
@@ -66,6 +67,7 @@
             <td>{{ $treatment->service->name }}</td>
             <td>{{ $treatment->disease }}</td>
             <td>{{ $treatment->created_at->isoFormat('D MMMM Y') }}</td>
+            <td>{{ $treatment->control->isoFormat('D MMMM Y') }}</td>
             <td>{{ $treatment->status }}</tr>
     @endforeach
     </tbody>

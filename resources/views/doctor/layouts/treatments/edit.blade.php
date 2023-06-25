@@ -42,6 +42,15 @@
             @enderror
           </div>
           <div class="form-group">
+            <label for="control">Berobat Jalan (opsional)</label>
+            <input type="datetime-local" name="control" id="control" class="form-control @error('control') is-invalid @enderror" placeholder="Isi penyakit yang diderita pasien"/>
+            @error('control')
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+          <div class="form-group">
             <button type="submit" class="btn btn-success">Selesai</button>
           </div>
         </form>

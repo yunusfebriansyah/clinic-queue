@@ -86,8 +86,10 @@ class DoctorTreatmentController extends Controller
     public function update(Request $request, Treatment $treatment)
     {
         $validated = $request->validate([
-            'disease' => 'required'
+            'disease' => 'required',
+            'control' => '',
         ]);
+        $validated['control'] = date("Y-m-d H:i:s", strtotime($validated['control']));
         $validated['status'] = 'menunggu pembayaran';
         Treatment::where('id', $treatment->id)->update($validated);
         return redirect('/doctor/queues')->with('message', '<div class="alert alert-success mt-3" role="alert">Data pengobatan <strong>berhasil ditangani</strong>.</div>');

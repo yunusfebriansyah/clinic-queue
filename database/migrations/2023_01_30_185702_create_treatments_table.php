@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('service_id');
             $table->text('disease')->nullable();
             $table->text('complaint');
+            $table->timestamp('control')->nullable();
             $table->enum('status', ['menunggu konfirmasi', 'menunggu antrian', 'ditangani', 'menunggu pembayaran', 'selesai', 'dibatalkan', 'ditolak'])->default('menunggu konfirmasi');
             $table->timestamps();
             $table->softDeletes();
